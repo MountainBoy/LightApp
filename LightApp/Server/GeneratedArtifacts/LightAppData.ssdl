@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LightAppDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="LightAppDataStore">
+    <EntitySet Name="Account" EntityType="LightAppDataStore.AccountItem" store:Type="Tables" Schema="dbo" Table="Account" />
+    <EntitySet Name="c_Event" EntityType="LightAppDataStore.EventItem" store:Type="Tables" Schema="dbo" Table="Event" />
+    <AssociationSet Name="FK_Event_Account" Association="LightAppDataStore.FK_Event_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="c_Event" EntitySet="c_Event" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AccountItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="JoinDate" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Topic" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Detail" Type="nvarchar" Nullable="false" MaxLength="2048" />
+    <Property Name="Lanuch" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Aid" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Event_Account">
+    <End Role="Account" Type="LightAppDataStore.AccountItem" Multiplicity="1" />
+    <End Role="c_Event" Type="LightAppDataStore.EventItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="c_Event">
+        <PropertyRef Name="Aid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

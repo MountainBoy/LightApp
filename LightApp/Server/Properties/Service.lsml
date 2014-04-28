@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModelFragment xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication
+    Name="LightSwitchServiceApplication"
+    Version="1.0.0.0">
+    <ServiceApplication.Attributes>
+      <ModuleNamespace
+        Namespace="LightSwitchApplication" />
+    </ServiceApplication.Attributes>
+  </ServiceApplication>
+  <DataService
+    DataProvider="EntityFrameworkDataProvider"
+    EntityContainer="LightSwitchCommonModule:LightAppData"
+    Name="LightAppDataDataService">
+    <DataService.ConnectionProperties>
+      <ConnectionProperty
+        Name="DataProviderName"
+        Value="91510608-8809-4020-8897-fba057e22d54" />
+      <ConnectionProperty
+        Name="DataSourceName"
+        Value="067ea0d9-ba62-43f7-9106-34930c60c528" />
+      <ConnectionProperty
+        Name="ProviderInvariantName"
+        Value="System.Data.SqlClient" />
+      <ConnectionProperty
+        Name="SafeConnectionString"
+        Value="Data Source=(local)\MSSQLEXPRESS;Initial Catalog=LightApp;Integrated Security=True" />
+      <ConnectionProperty
+        Name="ConnectionStringGuid"
+        Value="49be4e78-775b-43ff-aeb2-61612fef9e9d" />
+      <ConnectionProperty
+        Name="ProviderManifestToken"
+        Value="2008" />
+    </DataService.ConnectionProperties>
+    <EntitySetMapping
+      EntitySet="Account">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Account" />
+        <SsdlProperty
+          Name="ID"
+          Nullable="False"
+          Property="LightSwitchCommonModule:AccountItem/Properties[ID]"
+          Type="uniqueidentifier" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="Name"
+          Nullable="False"
+          Property="LightSwitchCommonModule:AccountItem/Properties[Name]"
+          Type="nvarchar" />
+        <SsdlProperty
+          Name="JoinDate"
+          Nullable="False"
+          Property="LightSwitchCommonModule:AccountItem/Properties[JoinDate]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="Status"
+          Nullable="False"
+          Property="LightSwitchCommonModule:AccountItem/Properties[Status]"
+          Type="bit" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <EntitySetMapping
+      EntitySet="c_Event">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="Event" />
+        <SsdlProperty
+          Name="ID"
+          Nullable="False"
+          Property="LightSwitchCommonModule:EventItem/Properties[ID]"
+          StoreGeneratedPattern="Identity"
+          Type="int" />
+        <SsdlProperty
+          MaxLength="255"
+          Name="Topic"
+          Nullable="False"
+          Property="LightSwitchCommonModule:EventItem/Properties[Topic]"
+          Type="nvarchar" />
+        <SsdlProperty
+          MaxLength="2048"
+          Name="Detail"
+          Nullable="False"
+          Property="LightSwitchCommonModule:EventItem/Properties[Detail]"
+          Type="nvarchar" />
+        <SsdlProperty
+          Name="Lanuch"
+          Nullable="False"
+          Property="LightSwitchCommonModule:EventItem/Properties[Lanuch]"
+          Type="datetime" />
+        <SsdlProperty
+          Name="Status"
+          Nullable="False"
+          Property="LightSwitchCommonModule:EventItem/Properties[Status]"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="Aid"
+          Nullable="False"
+          PropertyName="Aid"
+          Type="uniqueidentifier" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="FK_Event_Account">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="FK_Event_Account" />
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:LightAppData/Members[FK_Event_Account]/Members[Account]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="ID" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="LightSwitchCommonModule:LightAppData/Members[FK_Event_Account]/Members[c_Event]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Aid" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+</ModelFragment>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="AccountItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Edm.Guid" Nullable="false" />
+    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" ConcurrencyMode="Fixed" />
+    <Property Name="JoinDate" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Status" Type="Edm.Boolean" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="c_Event" Relationship="LightSwitchApplication.FK_Event_Account" ToRole="c_Event" FromRole="Account" />
+  </EntityType>
+  <EntityType Name="EventItem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Topic" Type="Edm.String" Nullable="false" MaxLength="255" ConcurrencyMode="Fixed" />
+    <Property Name="Detail" Type="Edm.String" Nullable="false" MaxLength="2048" ConcurrencyMode="Fixed" />
+    <Property Name="Lanuch" Type="Edm.DateTime" Nullable="false" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Status" Type="Edm.Int32" Nullable="false" ConcurrencyMode="Fixed" />
+    <Property Name="Aid" Type="Edm.Guid" Nullable="false" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="AccountItem" Relationship="LightSwitchApplication.FK_Event_Account" ToRole="Account" FromRole="c_Event" />
+  </EntityType>
+  <Association Name="FK_Event_Account">
+    <End Role="Account" Type="LightSwitchApplication.AccountItem" Multiplicity="1" />
+    <End Role="c_Event" Type="LightSwitchApplication.EventItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="c_Event">
+        <PropertyRef Name="Aid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LightAppDataObjectContext" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="Account" EntityType="LightSwitchApplication.AccountItem" />
+    <EntitySet Name="c_Event" EntityType="LightSwitchApplication.EventItem" />
+    <AssociationSet Name="FK_Event_Account" Association="LightSwitchApplication.FK_Event_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="c_Event" EntitySet="c_Event" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

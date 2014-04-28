@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="G:\PersonalSLN\LightApp\LightApp\Client\Properties\Client.lsml" Checksum="8660DD364DEB629ABEE928AFAD4A13D87EF2EA1AE0C24323A45F4F7B50AC64B9" />
+    <Document FullPath="G:\PersonalSLN\LightApp\LightApp\Common\Properties\Common.lsml" Checksum="F5E70A19EE05FB8374B764B984B438D492944CAA9F8209ABF2F1BB6FFD963532" />
+  </Documents>
+</ModelDocumentManifest>

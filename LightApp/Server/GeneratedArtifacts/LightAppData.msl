@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="LightAppDataObjectContext" StorageEntityContainer="LightAppDataStore">
+    <EntitySetMapping Name="Account">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.AccountItem)">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="c_Event">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.EventItem)">
+        <MappingFragment StoreEntitySet="c_Event">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="Lanuch" ColumnName="Lanuch" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Aid" ColumnName="Aid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
